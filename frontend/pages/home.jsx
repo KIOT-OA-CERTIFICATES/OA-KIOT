@@ -6,6 +6,7 @@ function Home() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
+  const [leave , setleave] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,7 +32,21 @@ function Home() {
         </button>
       </div>
 
-      {/* Modal */}
+    {/* Leave Request Modal */}
+    {leave && (
+        <div className="fixed inset-0 bg-blur-medium bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white p-8 rounded-2xl w-full max-w-md shadow-lg flex flex-col items-center">
+                <h1 className="text-2xl font-bold text-purple-700 mb-6">Under Progress</h1>
+                <button
+                    type="button"
+                    onClick={() => setleave(false)}
+                    className="bg-red-600 text-white px-4 py-2 rounded-xl hover:bg-red-700"
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+    )}
       {showModal && (
         <div className="fixed inset-0 bg-blur-medium bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-8 rounded-2xl w-full max-w-lg shadow-lg">
