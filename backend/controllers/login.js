@@ -27,6 +27,7 @@ const Login = Apihandler(async(req,res)=>{
         res.cookie("login", value, {maxAge:600000, secure:true, httpOnly:true})
         // console.log(value)
         res.send(user)
+        //sample
         }
     }
 })
