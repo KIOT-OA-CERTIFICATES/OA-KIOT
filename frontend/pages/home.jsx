@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios"
 import { toast, ToastContainer } from "react-toastify";
+// import { set } from './../../backend/node_modules/mongoose/types/index.d';
 function Home() {
+  const[username , setusername] = useState();
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/check", { withCredentials: true })
+    .then(res=>{
+      setusername(res.data.username)
+    })
+  }, []);
+
+  
+
+
   const [showModal, setShowModal] = useState(false);
   const [semester, setSemester] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
   const [leave , setleave] = useState(false);
-  const[user,setuser] = useState()
+  // const[user,setuser] = useState()
   const [showimage, setshowimage] = useState(false)
   const [image, setimage] = useState("")
   const BASE_URL = "http://localhost:8080"
@@ -65,7 +78,7 @@ function Home() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100 z-0">
      <ToastContainer/>
-      <h1 className="text-4xl font-bold mb-4">Welcome to CSE - A Portal</h1>
+      <h1 className="text-4xl font-bold mb-4">Welcome - {username} !</h1>
 
       <div className="flex space-x-10 m-10 z-30">
         <button
