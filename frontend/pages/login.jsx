@@ -9,8 +9,8 @@ function Login() {
   const navigate = useNavigate()
   function handleLogin(e) {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
+    // console.log("Email:", email);
+    // console.log("Password:", password);
     axios.post("http://localhost:8080/login",{email, password}, {withCredentials:true})
     .then(res=>{
       // console.log(res)

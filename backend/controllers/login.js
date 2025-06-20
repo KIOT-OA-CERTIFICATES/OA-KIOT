@@ -17,17 +17,38 @@ const Login = Apihandler(async(req,res)=>{
         const user = await UserSchema.findOne({email:email})
 
         if(!user){
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
             res.status(201).send("User not found")
         }
         else if(password != user.password){
             res.status(201).send("Password incorrect")
         }
+        
+        else{
+        let username = user.username
+        let value = jwt.sign({email, password, username}, "JSON-WEB-TOKEN")
+        res.cookie("login", value, {maxAge: (60000 * 60 ), secure:true, httpOnly:true})
+        // console.log(value)
+        res.status(200).send("Login Successfull")
+        //sample
+=======
+=======
+>>>>>>> Stashed changes
+            res.send("User not found")
+        }
+        else if(password != user.password){
+            res.send("Password incorrect")
+        }
         else{
         let value = jwt.sign({email, password}, "JSON-WEB-TOKEN")
         res.cookie("login", value, {maxAge:600000, secure:true, httpOnly:true})
         // console.log(value)
-        res.status(200).send("Login Successfull")
-        //sample
+        res.send(user)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         }
     }
 })
