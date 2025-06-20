@@ -124,7 +124,7 @@ function Home() {
                 >
                   <option value="">Select Semester</option>
                   {[...Array(8)].map((_, i) => (
-                    <option key={i} value={`Semester ${i + 1}`}>
+                    <option key={i} value={`${i + 1}`}>
                       Semester {i + 1}
                     </option>
                   ))}
