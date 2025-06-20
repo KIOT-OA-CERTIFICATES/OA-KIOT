@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function Admin() {
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState("Your Name");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [addUser, setAddUser] = useState(false);
