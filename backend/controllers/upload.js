@@ -26,21 +26,22 @@ const addfile = Apihandler(async(req,res)=>{
     const file = req.files[0]
     const{username,email,semester,title,description} = req.body
     // console.log(semester)
-   
-    // console.log(newdata)
+   let type = file.mimetype
+    console.log(type.split("/")[1])
     const image_url =  (await cloudinary.uploader.upload(file.path)).secure_url
-    // console.log(image_url)
+    console.log(image_url)
     let newdata = DataSchema({
         username:username,
         email:email,
         file:image_url,
         semester:semester,
         title:title,
-        description:description
+        description:description,
+        filetype:type.split("/")[1]
     })
     await newdata.save()
     fs.unlinkSync(file.path)
-    res.send(image_url)
+    res.send({url:image_url , type:type.split("/")[1]})
 })
 
 export {cloudinary, upload, addfile}

@@ -17,6 +17,9 @@ const Data = new Schema({
     },
     description:{
         type:String
+    },
+    filetype:{
+        type:String
     }
 },{
     timestamps:true

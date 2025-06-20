@@ -12,6 +12,7 @@ function Home() {
   const [showimage, setshowimage] = useState(false)
   const [image, setimage] = useState("")
   const BASE_URL = "http://localhost:8080"
+  const [type,settype] = useState()
   const handleSubmit = (e) => {
     e.preventDefault();
     let newform = new FormData()
@@ -38,7 +39,9 @@ function Home() {
           if(res.data){
             toast.update(loading, {autoClose:2000, render:"Success", type:"success", isLoading:false})
             setshowimage(true)
-            setimage(res.data)
+            console.log(res.data)
+            setimage(res.data.url)
+            settype(res.data.type)
           }
           else{
             toast.update(loading, {autoClose:2000, render:"Something went wrong", type:"error"})
@@ -174,14 +177,17 @@ function Home() {
       <div className="w-[80%] h-[80%] z-50 fixed  rounded-3xl borderf flex items-center justify-center  " onClick={()=>{
         setshowimage(!showimage)
       }}>
-        <div className=" w-[50%] object-cover flex items-center flex-col justify-center gap-3 font-bold z-50 border rounded-md backdrop-blur-2xl py-10" 
+        <div className=" w-[70%] min-h-[300px] object-cover flex items-center flex-col justify-center gap-3 font-bold z-50 border rounded-md backdrop-blur-2xl py-10" 
         
           onClick={(e)=>
            e.stopPropagation()
           }
         >
-          <img src={image} alt="" className="w-[50%] h-[50%]" 
-          />
+          {
+            ["png" , "jpg" , "jpeg" , "webp"].includes(type) ? <img src={image} alt="" className="w-[60%] h-[60%] object-cover"
+            /> : <iframe src={image} className="w-[60%] h-[80%] object-cover"
+            />
+          }
           <p>{semester}</p>
           <p>Title: {title}</p>
           <p>Description: {description}</p>
