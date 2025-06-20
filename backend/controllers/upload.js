@@ -29,7 +29,7 @@ const addfile = Apihandler(async(req,res)=>{
    
     // console.log(newdata)
     const image_url =  (await cloudinary.uploader.upload(file.path)).secure_url
-    console.log(image_url)
+    // console.log(image_url)
     let newdata = DataSchema({
         username:username,
         email:email,

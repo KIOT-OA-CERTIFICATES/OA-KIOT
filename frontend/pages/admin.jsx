@@ -8,9 +8,9 @@ function Admin() {
 
   const handleAddUser = (e) => {
     e.preventDefault();
-    console.log("User Name:", userName);
-    console.log("Email:", email);
-    console.log("Password:", password);
+    // console.log("User Name:", userName);
+    // console.log("Email:", email);
+    // console.log("Password:", password);
 
     // You can call backend API here to actually add the user
 

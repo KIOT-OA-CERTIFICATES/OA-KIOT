@@ -9,7 +9,7 @@ function Home() {
   const [file, setFile] = useState(null);
   const [leave , setleave] = useState(false);
   const[user,setuser] = useState()
-  const [showimage, setshowimage] = useState(true)
+  const [showimage, setshowimage] = useState(false)
   const [image, setimage] = useState("")
   const BASE_URL = "http://localhost:8080"
   const handleSubmit = (e) => {
