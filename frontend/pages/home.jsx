@@ -52,7 +52,7 @@ function Home() {
           if(res.data){
             toast.update(loading, {autoClose:2000, render:"Success", type:"success", isLoading:false})
             setshowimage(true)
-            console.log(res.data)
+            // console.log(res.data)
             setimage(res.data.url)
             settype(res.data.type)
           }
@@ -201,7 +201,7 @@ function Home() {
             /> : <iframe src={image} className="w-[60%] h-[80%] object-cover"
             />
           }
-          <p>{semester}</p>
+          <p>Semester: {semester}</p>
           <p>Title: {title}</p>
           <p>Description: {description}</p>
 

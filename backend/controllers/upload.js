@@ -3,6 +3,7 @@ import multer from "multer"
 import Apihandler from '../utils/ApiHandler.js';
 import fs from "fs"
 import DataSchema from '../models/data.js';
+import { UserSchema } from '../models/user.js';
 cloudinary.config({ 
     cloud_name: 'dmbiqpg0z', 
     api_key: '777934722256838', 
@@ -27,9 +28,9 @@ const addfile = Apihandler(async(req,res)=>{
     const{username,email,semester,title,description} = req.body
     // console.log(semester)
    let type = file.mimetype
-    console.log(type.split("/")[1])
+    // console.log(type.split("/")[1])
     const image_url =  (await cloudinary.uploader.upload(file.path)).secure_url
-    console.log(image_url)
+    // console.log(image_url)
     let newdata = DataSchema({
         username:username,
         email:email,
@@ -44,4 +45,31 @@ const addfile = Apihandler(async(req,res)=>{
     res.send({url:image_url , type:type.split("/")[1]})
 })
 
-export {cloudinary, upload, addfile}
+const newuser = Apihandler(async(req,res)=>{
+  const{userName, email, password} = req.body
+  // console.log([userName, email].some((item)=>item.trim()==""))
+  if([userName, email, password]?.some((item)=> item.trim() == ""
+  )){
+    res.status(201).send("Enter full details")
+  }
+  else{
+    const user =await UserSchema.findOne({
+      $or:[{email},{userName}]
+    })
+    if(!user){
+      const newuser = UserSchema({
+        username:userName,
+        email:email,
+        password:password
+      })
+      await newuser.save()
+      // console.log(newuser)
+      res.status(200).send("Success")
+    }
+    else{
+      res.status(201).send("User already exist")
+    }
+  }
+})
+
+export {cloudinary, upload, addfile, newuser}
