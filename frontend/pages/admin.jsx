@@ -117,10 +117,10 @@ function Admin() {
             <h2 className="text-2xl font-bold text-purple-700 mb-6">View Certificates</h2>
             <div  className="space-y-4">
               <div>
-                <label className="block text-sm font-medium">Username</label>
+                <label className="block text-sm font-medium">Username or Email</label>
                 <input
                   type="text"
-                  placeholder='Enter your username'
+                  placeholder='Enter your username or email'
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
                   className="w-full border-2 border-gray-300 px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400"
