@@ -46,8 +46,8 @@ This tool allows students to calculate their GPA using a clean and intuitive int
 ---
 ##  Author   
 
-Created by Badri Narayanan B R and Damodara Prakash P
-MIT License © 2025  
+-Created by Badri Narayanan B R and Damodara Prakash P
+-MIT License © 2025  
 
 
 
