@@ -44,7 +44,10 @@ This tool allows students to calculate their GPA using a clean and intuitive int
 | **Cloudinary**   | File storage for certificates (PDF) |
 
 ---
+##  Author   
 
+Created by Badri Narayanan B R and Damodara Prakash P
+MIT License © 2025  
 
 
 
