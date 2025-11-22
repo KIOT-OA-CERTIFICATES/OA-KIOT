@@ -4,6 +4,7 @@ import Apihandler from '../utils/ApiHandler.js';
 import fs from "fs"
 import DataSchema from '../models/data.js';
 import { UserSchema } from '../models/user.js';
+import { cache } from './finddatas.js';
 cloudinary.config({ 
     cloud_name: 'dmbiqpg0z', 
     api_key: '777934722256838', 
@@ -40,8 +41,21 @@ const addfile = Apihandler(async(req,res)=>{
         description:description,
         filetype:type.split("/")[1]
     })
-    await newdata.save()
-    fs.unlinkSync(file.path)
+  await newdata.save()
+  
+
+  fs.unlinkSync(file.path)
+  
+  let data = await DataSchema.find({
+    email: email,
+    semester : semester
+  })
+  console.log(data);
+  await cache.del(`user/${email}/${semester}`);
+
+  await cache.setEx(`user/${email}/${semester}`,"1000",JSON.stringify(data));
+  
+  
     res.send({url:image_url , type:type.split("/")[1]})
 })
 

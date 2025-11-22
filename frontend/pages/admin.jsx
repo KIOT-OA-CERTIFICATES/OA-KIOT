@@ -148,7 +148,7 @@ function Admin() {
                 onClick={() =>{
                   axios.post(`${BASE_URL}/finddata`,{username:userName, semester:semester})
                   .then(res=>{
-                    // console.log(res.data.length)
+                    console.log(res)
                     if(res.status !=201){
                       if(res.data.length>0){
                         navigate("/data",{state:{

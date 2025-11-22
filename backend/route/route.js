@@ -2,9 +2,10 @@ import { Router } from "express";
 import { Login } from "../controllers/login.js";
 import { upload, addfile, newuser } from "../controllers/upload.js";
 import { checkcookie } from "../controllers/cookies.js";
-import finddata from "../controllers/finddatas.js";
+import {finddata} from "../controllers/finddatas.js";
+import apicache from "apicache"
 const router = Router()
-
+// let cache = apicache.middleware
 router.route("/").get((req,res)=>{
     res.send("Welcome to KIOT OA Certificate portal")
 })

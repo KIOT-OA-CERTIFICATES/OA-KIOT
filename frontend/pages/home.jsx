@@ -17,7 +17,7 @@ function Home() {
   const [subjects, setSubjects] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [semester, setSemester] = useState("");
-  const [title, setTitle] = useState("");
+  // const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
   const [leave, setleave] = useState(false);
@@ -25,6 +25,9 @@ function Home() {
   const [image, setimage] = useState("");
   const BASE_URL = "http://localhost:8080";
   const [type, settype] = useState();
+  const [title, settitle] = useState("Select Certificate Type")
+  console.log(title);
+  let lastLoggedPercent = 0;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,12 +45,24 @@ function Home() {
         newform.append("semester", semester);
         newform.append("title", title);
         newform.append("description", description);
-
+        
         axios
           .post(`${BASE_URL}/upload`, newform, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
+            transformRequest: [(data) => data],
+            onUploadProgress: (progressEvent) => {
+              const percentCompleted = Math.round(
+                (progressEvent.loaded * 100) / progressEvent.total
+              );
+
+              // Log only at 10% intervals
+              if (percentCompleted - lastLoggedPercent >= 10 || percentCompleted === 100) {
+                console.log(`Upload progress: ${percentCompleted}%`);
+                lastLoggedPercent = percentCompleted;
+              }
+            }
           })
           .then((res) => {
             if (res.data) {
@@ -255,13 +270,22 @@ Leave Request        </button>
 
               <div>
                 <label className="block text-sm font-medium">Certificate Title</label>
-                <input
+                {/* <input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   className="w-full border border-gray-300 rounded-xl p-2"
                   required
-                />
+                /> */}
+                <select name="type" id="" className="w-full border border-gray-300 rounded-xl p-2" value={title} onChange={(e) => settitle(e.target.value)}>
+                  <option value="Conference"> Conference</option>
+                  <option value="NPTEL">NPTEL</option>
+                  <option value="Hackathon">Hackathon</option>
+                  <option value="Paper Presentation">Paper Presentation</option>
+                  <option value="Contest">Contest</option>
+                  <option value="NonTech">Non Tech</option>
+                </select>
+
               </div>
 
               <div>

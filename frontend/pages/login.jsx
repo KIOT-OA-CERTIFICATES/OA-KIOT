@@ -11,7 +11,14 @@ function Login() {
     e.preventDefault();
     // console.log("Email:", email);
     // console.log("Password:", password);
-    axios.post("http://localhost:8080/login",{email, password}, {withCredentials:true})
+    axios.post("http://localhost:8080/login", { email, password },{withCredentials:true}, {
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        console.log("Upload progress:", percentCompleted + "%");
+      
+    }})
     .then(res=>{
       // console.log(res)
       if(res.status == 201){

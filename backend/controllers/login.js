@@ -14,8 +14,10 @@ const Login = Apihandler(async(req,res)=>{
         res.status(201).send("Enter your password")
     }
     else{
-        const user = await UserSchema.findOne({email:email})
-
+        const user = await UserSchema.findOne({ email: email })
+        
+        console.log(user);
+        
         if(!user){
 
             res.status(201).send("User not found")
