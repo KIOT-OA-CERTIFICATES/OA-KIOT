@@ -1,5 +1,5 @@
 # 🎓 CSE Class Portal (MERN Stack)
-
+ 
 A complete academic portal built using the **MERN Stack (MongoDB, Express, React, Node.js)** designed specifically for CSE students. This portal allows students to upload participation certificates, apply for leave, calculate GPA, and gives admins tools to manage users and submissions efficiently.
 
 ---
